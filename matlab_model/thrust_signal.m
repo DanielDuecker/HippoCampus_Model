@@ -17,9 +17,9 @@ function tau = thrust_signal(u, param)
 p_out = u; % [u1, u2, u3, u4]
 
 F_thrust = p_out(1);
-K_roll = 0;
-M_pitch = 0;
-N_yaw = p_out(2);
+K_roll = p_out(2);
+M_pitch = p_out(3);
+N_yaw = p_out(4);
 
 %% Outputs
 % System is underactuated and non-holonomic, tau2 = tau3 = 0

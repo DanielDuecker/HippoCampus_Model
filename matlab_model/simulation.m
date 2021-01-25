@@ -1,3 +1,7 @@
+%% HippoCampus Model
+% by Malte Flehmke
+% adapted by Daniel Duecker
+
 %% Load the HippoCampus parameters
 param = hippocampus_parameters();
 
@@ -9,9 +13,10 @@ f = @(t, x) hippocampus_parameterized(t, sensor_data(t, x), param);
 tspan = linspace(0,10,100);
 
 %% Initial Conditions
-x0 = zeros(12,1);
+% States [x, y, z, phi, theta, psi, u, v, w, p, q, r];
+x0 =[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-%% Solvering the ODE
+%% Solving the ODE
 % for now the standard ode45 solver is used
 options = odeset('Stats','on');
 [t, X] = ode45(f, tspan, x0, options);
@@ -28,10 +33,15 @@ thrust = thrust_signal(t, X);
 % grid on;
 
 %% Plot vehicle Attitude
+close all
 figure(1)
-title('Attitude control')
+title('Attitude')
 hold on
-plot(t, X(4))
-plot(t, X(5))
-plot(t, X(6))
+plot(t, X(:,4))
+plot(t, X(:,5))
+plot(t, X(:,6))
+xlabel('time in s')
+ylabel('angle in rad')
+legend('roll', 'pitch', 'yaw')
+box on
 grid on
