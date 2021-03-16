@@ -1,4 +1,4 @@
-function dx = hippocampus_parameterized(t, x, param, control_param)
+function [dx, u_control, u_mot, tau] = hippo_dynamics_adv(t, x, param, control_param)
 %% Parametervector
 % Parameters [l, d, m, B, Ix, Iy, Iz, X_Du, Y_Dv, Z_Dw, K_Dp, M_Dq, N_Dr,
 % X_uu, Y_vv, Z_ww, K_pp, M_qq, N_rr, C_T, C_D];
@@ -89,12 +89,15 @@ g_0 = 0; % static restoring forces
 %% Input values tau
 x_des = sp_generator(t, x);
 if control_param == 0% 'geo'
-    u = geo_controller(x_des, x);
+    u_control = geo_controller(x_des, x);
 elseif control_param == 1 % 'geo_ext'
-    u = geo_controller_ext(x_des, x, param);
+    u_control = geo_controller_ext(x_des, x, param);
 end
-tau = thrust_signal(u);
-
+tau = zeros(6,1);
+u_mot = zeros(4,1);
+temp = thrust_model_adv(u_control, param);
+tau = temp(1:6);
+u_mot = temp(7:10);
 %% Differential Equation
 dx = zeros(12,1);
 dx(1:6,1) = J_Theta*nu;

@@ -1,6 +1,6 @@
 function param = hippocampus_parameters()
 %% PARAMETERS FROM PRO-034
-% HippoCampus paramters
+% HippoCampus parameters
 param(1) = 0.205;          % [m]
 param(2) = 0.235;          % [m]
 param(3) = 1.47;           % [kg]
@@ -26,8 +26,10 @@ param(18) = -7e-3;       % [kg m^2]
 param(19) = -7e-3;       % [kg m^2]
 
 % Propeller Thrust and Drag Coefficient
-param(20) = 3.633e-5;     % [N/us^2]
-param(21) = 2.469e-9;     % [N/us^2]
+% param(20) = 3.633e-5;     % [N/us^2]
+% param(21) = 2.469e-9;     % [N/us^2]
+param(20) = 1;     % [N/[.]^2]
+param(21) = 2.5e-1;     % [Nm/[.]^2]
 
 end
 

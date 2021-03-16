@@ -1,4 +1,4 @@
-function dx = hippocampus_parameterized(t, x, param, control_param)
+function dx = hippo_dynamics_base(t, x, param, control_param)
 %% Parametervector
 % Parameters [l, d, m, B, Ix, Iy, Iz, X_Du, Y_Dv, Z_Dw, K_Dp, M_Dq, N_Dr,
 % X_uu, Y_vv, Z_ww, K_pp, M_qq, N_rr, C_T, C_D];

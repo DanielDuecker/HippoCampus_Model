@@ -33,9 +33,9 @@ omega_des = x_des(10:12,1);
 e_omega = omega - omega_des;
 
 % Gains
-p_roll = 1;
-p_pitch = 1;
-p_yaw = 1;
+p_roll = 2;
+p_pitch = 2;
+p_yaw = 2;
 
 d_roll = 1;
 d_pitch = 1;
